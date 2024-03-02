@@ -22,8 +22,12 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
 
         }
+        if (transform.position.y > 0) {
+            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        }
         Vector3 lookDirection = (player.transform.position - transform.position).normalized;
         enemyRb.AddForce(lookDirection * speed);
+        enemyRb.transform.LookAt(new Vector3(player.transform.position.x, 0, player.transform.position.z));
 
     }
 }
